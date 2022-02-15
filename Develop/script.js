@@ -73,7 +73,21 @@ function generatePassword() {
   
   var userLength = selectLength();
   console.log(userLength);
+
   // Generate a password based on user criteria
+
+  // Unicode letters: https://www.w3schools.com/charsets/ref_utf_basic_latin.asp
+  // Special characters allowed: https://owasp.org/www-community/password-special-characters
+
+  // Use the decimal numbers in "let text = String.fromCharCode(72, 69, 76, 76, 79);" https://www.w3schools.com/jsref/jsref_fromcharcode.asp
+
+  // Numbers: 48 - 57
+  // Upper Case: 65 - 95
+  // Lower Case: 97 - 122
+  // Special: 32 - 47, 58 - 64, 91 - 96, 123 - 126
+
+  let passsword = String.fromCharCode(72);
+  console.log(passsword);
 }
 
 // Display generated password in alert or written on page
