@@ -26,7 +26,6 @@ function selectCategory() {
   choice.push(confirm("Would would like your passsword to contain Upper Case characters (e.g., G, N)?"));
   choice.push(confirm("Would would like your passsword to contain Numeric characters (e.g., 7, 5)?"));
   choice.push(confirm("Would would like your passsword to contain Special characters (e.g., &, $)?"));
-  console.log(choice);
   // Validate input, minimum of one character type is needed (ensure array is not empty)
   for (let index = 0; index < choice.length; index++) {
     if (choice[index]) {
@@ -48,7 +47,6 @@ function selectLength () {
   
   // Validate pw length for non number values
   pwlength = Number(pwlength);
-  console.log(pwlength);
   
   // Validates pwlength to ensure only a number has been input.
   while (isNaN(pwlength)) {
@@ -62,7 +60,6 @@ function selectLength () {
     alert("Error: Password length must be a Number between 8 and 128 characters. Please try again");
     pwlength = prompt("How long would you like your password to be?\n Please enter a number between 8 and 128");
   }
-  console.log(pwlength);
   return pwlength;
 }
 
@@ -116,9 +113,13 @@ function generatePassword() {
       allowable = allowable.concat(String.fromCharCode(index));
     }
   }
-  console.log(allowable);
 
-  // let passsword = String.fromCharCode(72);
+  var password =[];
+
+  // Display generated password in alert or written on page
+  for (let index = 0; index < userLength; index++) {
+    password = password + allowable[Math.floor(Math.random()*allowable.length)];
+    console.log(password); 
+  }
+  return password;
 }
-
-// Display generated password in alert or written on page
