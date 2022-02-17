@@ -82,34 +82,34 @@ function generatePassword() {
   var allowable = [];
   // 26 Lower Case: 97 - 122
   if (userChoice[0]) {
-    for (let index = 97; index < 123; index++) {
+    for (let index = 97; index <= 122; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
   }
-  // 26 Upper Case: 65 - 95
+  // 26 Upper Case: 65 - 90
   if (userChoice[1]) {
-    for (let index = 65; index < 96; index++) {
+    for (let index = 65; index <= 90; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
   }
   // 10 Numbers: 48 - 57
   if (userChoice[2]) {
-    for (let index = 48; index < 58; index++) {
+    for (let index = 48; index <= 57; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
   }
   // 33 Special Characters: 32 - 47, 58 - 64, 91 - 96, 123 - 126
   if (userChoice[3]) {
-    for (let index = 32; index < 48; index++) {
+    for (let index = 32; index <= 47; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
-    for (let index = 58; index < 65; index++) {
+    for (let index = 58; index <= 64; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
-    for (let index = 91; index < 97; index++) {
+    for (let index = 91; index <= 96; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
-    for (let index = 123; index < 127; index++) {
+    for (let index = 123; index <= 126; index++) {
       allowable = allowable.concat(String.fromCharCode(index));
     }
   }
@@ -119,7 +119,53 @@ function generatePassword() {
   // Display generated password in alert or written on page
   for (let index = 0; index < userLength; index++) {
     password = password + allowable[Math.floor(Math.random()*allowable.length)];
-    console.log(password); 
   }
+  console.log(password); 
+  
+  // Ensure password matches user selection.
+  var validation = [];
+  var compChoice = [false, false, false, false];
+  for (let index = 0; index < password.length; index++) {
+      validation[index] = password.charCodeAt(index); // https://www.w3schools.com/js/js_string_methods.asp
+    }
+  console.log(validation);
+  
+  // Validate Lower Case
+  if (userChoice[0]) {
+    for (let index = 0; index < validation.length; index++) {
+      if ((97 <= validation[index]) && (validation[index] <= 122)) {
+        compChoice[0] = true;
+        break;
+      }
+    }
+  }
+  console.log(compChoice);
+  // Validate Upper Case
+  if (userChoice[1]) {
+    for (let index = 0; index < validation.length; index++) {
+      if ((65 <= validation[index]) && (validation[index] <= 90)) {
+        compChoice[1] = true;
+        break;
+      }
+    }
+  }
+  console.log(compChoice);
+  // Validate Number
+  if (userChoice[2]) {
+    for (let index = 0; index < validation.length; index++) {
+      if ((48 <= validation[index]) && (validation[index] <= 57)) {
+        compChoice[2] = true;
+        break;
+      }
+    }
+  }
+
+  console.log(compChoice);
+
+  // Generate new password until a valid one is chosen
+  // do {
+  //   password = generatePassword();
+  // } while ((compChoice[0] !== userChoice[0]) || (compChoice[1] !== userChoice[1]) || (compChoice[2] !== userChoice[2]) || (compChoice[3] !== userChoice[3]));
+  
   return password;
 }
