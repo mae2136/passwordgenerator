@@ -81,13 +81,44 @@ function generatePassword() {
 
   // Use the decimal numbers in "let text = String.fromCharCode(72, 69, 76, 76, 79);" https://www.w3schools.com/jsref/jsref_fromcharcode.asp
 
-  // Numbers: 48 - 57
-  // Upper Case: 65 - 95
-  // Lower Case: 97 - 122
-  // Special: 32 - 47, 58 - 64, 91 - 96, 123 - 126
+  // allowable creates array of valid password characters.
+  var allowable = [];
+  // 26 Lower Case: 97 - 122
+  if (userChoice[0]) {
+    for (let index = 97; index < 123; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+  }
+  // 26 Upper Case: 65 - 95
+  if (userChoice[1]) {
+    for (let index = 65; index < 96; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+  }
+  // 10 Numbers: 48 - 57
+  if (userChoice[2]) {
+    for (let index = 48; index < 58; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+  }
+  // 33 Special Characters: 32 - 47, 58 - 64, 91 - 96, 123 - 126
+  if (userChoice[3]) {
+    for (let index = 32; index < 48; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+    for (let index = 58; index < 65; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+    for (let index = 91; index < 97; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+    for (let index = 123; index < 127; index++) {
+      allowable = allowable.concat(String.fromCharCode(index));
+    }
+  }
+  console.log(allowable);
 
-  let passsword = String.fromCharCode(72);
-  console.log(passsword);
+  // let passsword = String.fromCharCode(72);
 }
 
 // Display generated password in alert or written on page
